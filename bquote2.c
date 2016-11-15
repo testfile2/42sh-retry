@@ -18,7 +18,7 @@ void		reg_bquote(t_env *env, t_main *w, t_bquote bquote)
 	bquote.promt = (char *)malloc(sizeof(char *) * ft_strlen("bquote> "));
 	ft_strcpy(bquote.promt, "bquote> ");
 	ft_selectinit(w);
-	bquote.str = get_str(bquote.promt, "`");
+	bquote.str = get_str(bquote.promt, "`", 1);
 	ft_selectend(w);
 	free(bquote.promt);
 	bquote.temp = ft_strdup(w->line);
@@ -26,7 +26,7 @@ void		reg_bquote(t_env *env, t_main *w, t_bquote bquote)
 	w->line = (char *)malloc(sizeof(char *) * ft_strlen(bquote.temp) +
 			ft_strlen(bquote.str) + 2);
 	ft_strcpy(w->line, bquote.temp);
-	ft_strcat(w->line, "\n");
+	ft_strcat(w->line, " ");
 	ft_strcat(w->line, bquote.str);
 	w->line[ft_strlen(w->line)] = '`';
 	ft_putchar('\n');

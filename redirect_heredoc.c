@@ -52,21 +52,25 @@ void			redirect_heredoc(char *file, t_main *w, t_env *env, \
     ft_putendl("executing heredoc...");
     ft_putendl(r->line);
     ft_putendl("r->line not initiated");
-	r->ln = (char *)malloc(sizeof(char *) * 1);
-	r->ln[0] = '\0';
-	ft_putstr("heredoc> ");
-	while (get_next_line(0, &r->line))
-	{
-		if (ft_strcmp(r->line, ft_strtrim(file)) == 0)
-			break ;
-		r->ln = ft_strjoin(r->ln, r->line);
-		r->ln = ft_strjoin(r->ln, "\n");
-		ft_putstr(r->line);
-		ft_putchar('\n');
-		ft_putstr("heredoc> ");
-	}
-	ft_putstr("\33[2K\r");
-	r->ln = ft_strjoin(r->ln, "\0");
+    ft_selectinit(w);
+    r->ln = get_str("heredoc> ", "lol", 0);
+    ft_selectend(w);
+    printf("i'm out!!!\n\n\n\n");
+//	r->ln = (char *)malloc(sizeof(char *) * 1);
+//	r->ln[0] = '\0';
+//	ft_putstr("heredoc> ");
+//	while (get_next_line(0, &r->line))
+//	{
+//		if (ft_strcmp(r->line, ft_strtrim(file)) == 0)
+//			break ;
+//		r->ln = ft_strjoin(r->ln, r->line);
+//		r->ln = ft_strjoin(r->ln, "\n");
+//		ft_putstr(r->line);
+//		ft_putchar('\n');
+//		ft_putstr("heredoc> ");
+//	}
+//	ft_putstr("\33[2K\r");
+//	r->ln = ft_strjoin(r->ln, "\0");
 	if (pipe(r->fd2) != -1)
 	{
 		r->childpid = fork();

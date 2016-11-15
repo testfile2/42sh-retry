@@ -17,6 +17,7 @@ t_env		*ft_vars_support(t_env *env, t_main *w)
 	int		x;
 	int		i;
 	char	**temp;
+	char 	*temp2;
 
 	i = 0;
 	temp = (char **)malloc(sizeof(char **) * 2);
@@ -25,7 +26,9 @@ t_env		*ft_vars_support(t_env *env, t_main *w)
 		temp = temp_return(env, &i);
 	ft_free2d(env->vars);
 	env->vars = NULL;
-	w->line = ft_strtrim(w->line);
+	temp2 = ft_strtrim(w->line);
+	free(w->line);
+	w->line = temp2;
 	temp[i] = (char *)malloc(sizeof(char *) * ft_strlen(w->line) + 1);
 	temp[i + 1] = NULL;
 	ft_strcpy(temp[i], w->line);

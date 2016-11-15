@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 11:42:14 by knage             #+#    #+#             */
-/*   Updated: 2016/11/15 11:51:40 by knage            ###   ########.fr       */
+/*   Updated: 2016/11/15 12:08:27 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,30 @@ void	cursor_movement(char *buff, t_keyhook *env)
 	}
 }
 
+void	check_line(t_keyhook *env, char *temp)
+{
+	env->cursor = -2;
+	printline(env);
+	temp = ft_strdup(env->line);
+	free(env->line);
+	env->line = ft_strtrim(temp);
+	free(temp);
+	env->line = variable_check(env->line);
+	env->line[env->x + 2] = '\0';
+}
+
 int		return_line(char *buff, t_keyhook *env)
 {
 	char		*temp;
 
 	if (buff[0] == env->ret[0] && !buff[1] && env->type == 1)
 	{
-		env->cursor = -2;
-		printline(env);
-		temp = ft_strdup(env->line);
-		free(env->line);
-		env->line = ft_strtrim(temp);
-		free(temp);
-		env->line = variable_check(env->line);
-		env->line[env->x + 2] = '\0';
+		check_line(env, temp);
 		return (1);
 	}
 	else if (ft_strcmp(env->line, env->ret) == 0)
 	{
-		env->cursor = -2;
-		printline(env);
-		temp = ft_strdup(env->line);
-		free(env->line);
-		env->line = ft_strtrim(temp);
-		free(temp);
-		env->line = variable_check(env->line);
-		env->line[env->x + 2] = '\0';
+		check_line(env, temp);
 		return (1);
 	}
 	return (0);

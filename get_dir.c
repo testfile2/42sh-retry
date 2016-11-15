@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/10 13:17:35 by knage             #+#    #+#             */
-/*   Updated: 2016/09/10 13:33:11 by knage            ###   ########.fr       */
+/*   Updated: 2016/11/15 11:52:05 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ t_env	path_management(char **line, char **tdir, t_env *env, char **line2)
 	ft_strcat(env->path, tdir[0]);
 	ft_strcat(env->path, "/");
 	if (line2 != NULL)
-    {
-        ft_free2d(line2);
-        line2 = NULL;
-    }
+	{
+		ft_free2d(line2);
+		line2 = NULL;
+	}
 	return (*env);
 }
 
@@ -87,8 +87,8 @@ t_env	get_dir(t_env *env, char **line)
 		ft_free2d(line2);
 		line2 = NULL;
 	}
-    t_main *w;
-    w = ft_keep_main();
+	t_main *w;
+	w = ft_keep_main();
 	ft_doublecoms(env, w, 1);
 	return (*env);
 }

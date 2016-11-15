@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 11:42:14 by knage             #+#    #+#             */
-/*   Updated: 2016/09/07 12:00:39 by kcowle           ###   ########.fr       */
+/*   Updated: 2016/11/15 11:51:40 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,18 @@ int		return_line(char *buff, t_keyhook *env)
 		env->line[env->x + 2] = '\0';
 		return (1);
 	}
-    else if (ft_strcmp(env->line, env->ret) == 0)
-    {
-        env->cursor = -2;
-        printline(env);
-        temp = ft_strdup(env->line);
-        free(env->line);
-        env->line = ft_strtrim(temp);
-        free(temp);
-        env->line = variable_check(env->line);
-        env->line[env->x + 2] = '\0';
-        return (1);
-    }
+	else if (ft_strcmp(env->line, env->ret) == 0)
+	{
+		env->cursor = -2;
+		printline(env);
+		temp = ft_strdup(env->line);
+		free(env->line);
+		env->line = ft_strtrim(temp);
+		free(temp);
+		env->line = variable_check(env->line);
+		env->line[env->x + 2] = '\0';
+		return (1);
+	}
 	return (0);
 }
 
@@ -96,7 +96,7 @@ char	*get_str(char *promt, char *ret, int type)
 	key_hook_init(&env);
 	env.pro = promt;
 	env.ret = ret;
-    env.type = type;
+	env.type = type;
 	while (1)
 	{
 		ft_bzero(buff, 8);
@@ -106,7 +106,7 @@ char	*get_str(char *promt, char *ret, int type)
 		if (return_line(buff, &env) == 1)
 			return (env.line);
 		if (handle_new_line(buff, &env) == 1)
-            return (env.line);
+			return (env.line);
 		ctrl_v(&env, buff);
 	}
 	return (get_str(promt, ret, env.type));

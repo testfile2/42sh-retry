@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 07:30:39 by knage             #+#    #+#             */
-/*   Updated: 2016/09/10 13:15:33 by knage            ###   ########.fr       */
+/*   Updated: 2016/11/15 11:53:17 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ t_env		*ft_vars_support(t_env *env, t_main *w)
 		env = ft_vars_insert(env, temp, x, i);
 	else
 		ft_putstr("Only alpha numeric characters allowed for local variable\n");
-	if (temp != NULL) {
+	if (temp != NULL)
+	{
 		ft_free2d(temp);
 		temp = NULL;
 	}

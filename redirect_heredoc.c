@@ -17,26 +17,37 @@ static	void	parent_procc(t_redirection *r, t_main *w, t_env *env)
 	r->fd[1] = dup(STDIN_FILENO);
 	dup2(r->fd2[0], STDIN_FILENO);
 	close(r->fd2[0]);
-	if (r->extras[1] == 1)
+	ft_strcpy(w->line, ft_strtrim(r->coms[0]));
+	ft_minishell(env, w);
+	dup2(r->fd[1], STDIN_FILENO);
+	close(r->fd[1]);
+
+	/*if (r->extras[1] == 1)
 	{
 		ft_doublecoms(env, w, 0);
 		dup2(r->extras[2], STDIN_FILENO);
 		close(r->extras[2]);
 		close(r->fd2[0]);
-	}
+	}*/
 }
 
 static	void	redirect_heredoc_supp(t_redirection *r, t_main *w, t_env *env)
 {
 	if (r->childpid == -1)
 	{
+		ft_putendl("child == -1");
 		ft_strcpy(w->line, " ");
 		ft_doublecoms(env, w, 0);
 	}
 	else if (r->childpid == 0)
+	{
+		ft_putendl("child == 0");
 		parent_procc(r, w, env);
+	}
 	else
 	{
+		ft_putendl("child != 0 && child != -1");
+
 		close(r->fd2[0]);
 		ft_putstr_fd(r->ln, r->fd2[1]);
 		close(r->fd2[1]);
@@ -49,13 +60,9 @@ void			redirect_heredoc(char *file, t_main *w, t_env *env, \
 		t_redirection *r)
 {
 //	r->fd[0] = open(ft_strtrim(file), O_RDWR);
-    ft_putendl("executing heredoc...");
-    ft_putendl(r->line);
-    ft_putendl("r->line not initiated");
     ft_selectinit(w);
-    r->ln = get_str("heredoc> ", "lol", 0);
+    r->ln = get_str("heredoc> ", file, 0);
     ft_selectend(w);
-    printf("i'm out!!!\n\n\n\n");
 //	r->ln = (char *)malloc(sizeof(char *) * 1);
 //	r->ln[0] = '\0';
 //	ft_putstr("heredoc> ");
@@ -73,6 +80,7 @@ void			redirect_heredoc(char *file, t_main *w, t_env *env, \
 //	r->ln = ft_strjoin(r->ln, "\0");
 	if (pipe(r->fd2) != -1)
 	{
+		ft_putendl("Pipe has not returned an error...");
 		r->childpid = fork();
 		redirect_heredoc_supp(r, w, env);
 	}

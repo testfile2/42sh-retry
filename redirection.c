@@ -17,8 +17,10 @@ void	ft_redirect(t_main *w, t_env *env)
 	int		append;
 
 	append = 0;
+    ft_putendl("redirection entered");
 	if (ft_strchr(w->line, '>') != 0)
 	{
+        ft_putendl("redirection > entered");
 		if (ft_findstr(">>", w->line))
 			append = 1;
 		redirection_gt(w, env, append);
@@ -36,6 +38,12 @@ void	redirection_gt(t_main *w, t_env *env, int append)
 
 	coms = ft_strsplit(w->line, '>');
 	coms[1] = ft_strtrim(coms[1]);
+    ft_putendl("w-line:");
+    ft_putendl(w->line);
+    ft_putendl("coms[0]:");
+    ft_putendl(coms[0]);
+    ft_putendl("coms[1]:");
+    ft_putendl(coms[1]);
 	if (append == 1)
 		fd[0] = open(ft_strtrim(coms[1]), O_RDWR | O_CREAT | O_APPEND, 0666);
 	else
@@ -67,6 +75,7 @@ void	redirection_lt(t_main *w, t_env *env)
 	coms = ft_strsplit(w->line, '<');
     if (ft_findstr("<<", w->line))
     {
+		r.coms = ft_strsplit(w->line, '<');
         r.line = ft_strnew((size_t) (ft_strlen(w->line) + 1));
 //        ft_putendl(r.line);
 //        r.line = (char*)malloc((sizeof(char *)) * 1000);

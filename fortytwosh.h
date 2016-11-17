@@ -234,6 +234,7 @@ void				init_echo(char *line, t_echo *ec);
 void				ft_copy(t_main *env);
 void				ft_paste(t_main *env);
 void				ft_cut(t_main *env);
+void				ft_printvars(t_env *env);
 void				sinno(int signall);
 void				ft_free2d(char **array);
 void				is_quote(t_main *main, char *str);

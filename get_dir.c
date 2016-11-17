@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/10 13:17:35 by knage             #+#    #+#             */
-/*   Updated: 2016/11/15 12:15:45 by knage            ###   ########.fr       */
+/*   Updated: 2016/11/17 08:12:17 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int		get_dir2(t_env *env, char **line2, char **line)
 	int				i;
 	char			*temp;
 
-	temp = NULL;
 	i = 0;
 	while (line2[i] != NULL)
 	{
 		temp = ft_strjoin(line2[i], "/");
-		line2[i] = ft_strdup(temp);
+		free(line2[i]);
+		line2[i] = temp;
 		pdir = opendir(line2[i]);
 		while (pdir != NULL && (pdirent = readdir(pdir)) != NULL)
 		{
@@ -38,7 +38,6 @@ int		get_dir2(t_env *env, char **line2, char **line)
 		}
 		i++;
 	}
-	free(pdir);
 	return (0);
 }
 

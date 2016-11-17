@@ -49,3 +49,19 @@ int		ft_printstring(t_main *e)
 	e->cursor == e->a[e->y].x + 1 && ft_cursor(' ');
 	return (1 + 0 * (ft_tabprint(e) && (e->t.lb = 1) && (ft_tabprint1(e))));
 }
+
+void		ft_printvars(t_env *env)
+{
+	int i;
+
+	i = 0;
+	if (env->vars)
+	{
+		while (env->vars[i] != NULL)
+		{
+			ft_putstr(env->vars[i]);
+			ft_putchar('\n');
+			i++;
+		}
+	}
+}

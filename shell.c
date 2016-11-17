@@ -6,7 +6,7 @@
 /*   By: knage <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 07:30:39 by knage             #+#    #+#             */
-/*   Updated: 2016/09/09 11:39:45 by kcowle           ###   ########.fr       */
+/*   Updated: 2016/11/17 08:14:10 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ void	minishell_support1(t_main *m, t_env *env, char *temp)
 		wait(NULL);
 		wait(NULL);
 		env->father = 0;
-	}
-	if(m->line2 != NULL)
-	{
-
 	}
 	if (m->line != NULL)
 	{

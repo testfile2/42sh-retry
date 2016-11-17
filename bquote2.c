@@ -6,7 +6,7 @@
 /*   By: kcowle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 11:36:02 by kcowle            #+#    #+#             */
-/*   Updated: 2016/11/15 11:50:48 by knage            ###   ########.fr       */
+/*   Updated: 2016/11/17 10:42:20 by knage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ void		reg_bquote(t_env *env, t_main *w, t_bquote bquote)
 	bquote.temp = ft_strdup(w->line);
 	free(w->line);
 	w->line = (char *)malloc(sizeof(char *) * ft_strlen(bquote.temp) +
-			ft_strlen(bquote.str) + 2);
+			ft_strlen(bquote.str) + 1);
 	ft_strcpy(w->line, bquote.temp);
 	ft_strcat(w->line, " ");
 	ft_strcat(w->line, bquote.str);
 	w->line[ft_strlen(w->line)] = '`';
+	temp = ft_strtrim(w->line);
+	free(w->line);
+	w->line = temp;
 	ft_putchar('\n');
 	w = ft_bquote(env, w);
 }
